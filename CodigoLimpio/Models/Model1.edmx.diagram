@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f8c9230140774ecba5a63a002d24f1fe" Name="Diagram1">
+        <EntityTypeShape EntityType="CodigoMVCModel.Departamento" Width="1.5" PointX="3.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodigoMVCModel.empleado" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodigoMVCModel.EmprendimientoEmpleado" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodigoMVCModel.Emprendimientos" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodigoMVCModel.Emprendimientos4RI" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodigoMVCModel.Herramientas4RI" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodigoMVCModel.IdeasConjunto" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodigoMVCModel.ImpactoDepartamento" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodigoMVCModel.ImpactoEmprendimiento" Width="1.5" PointX="6" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodigoMVCModel.Impactos" Width="1.5" PointX="3.75" PointY="0.625" IsExpanded="true" />
+        <AssociationConnector Association="CodigoMVCModel.FK_ImpactoDepartamento_DepartamentoTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CodigoMVCModel.FK_EmprendimientoEmpleado_empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="CodigoMVCModel.FK_IdEmprendimientoEmpleado_EmprendimientosTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CodigoMVCModel.FK_IdeasConjuntoTable_EmprendimientosTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CodigoMVCModel.FK_IdEmprendimientos4RI_EmprendimientosTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CodigoMVCModel.FK_ImpactoEmprendimiento_Emprendimientos" ManuallyRouted="false" />
+        <AssociationConnector Association="CodigoMVCModel.FK_IdEmprendimientos4RI_Herramientas4RITable" ManuallyRouted="false" />
+        <AssociationConnector Association="CodigoMVCModel.FK_ImpactoDepartamento_ImpactosTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CodigoMVCModel.FK_ImpactoEmprendimiento_Impactos" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

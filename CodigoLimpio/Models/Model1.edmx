@@ -1,0 +1,625 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CodigoMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="IdDepartamento" />
+          </Key>
+          <Property Name="IdDepartamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreDepartamento" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="IdEmpleado" />
+          </Key>
+          <Property Name="IdEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreEmpleado" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApellidoEmpleado" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CedulaEmpleado" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CorreoEmpleado" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmprendimientoEmpleado">
+          <Key>
+            <PropertyRef Name="IdEmprendimientoEmpleado" />
+          </Key>
+          <Property Name="IdEmprendimientoEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEmprendimiento" Type="int" Nullable="false" />
+          <Property Name="IdEpleado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Emprendimientos">
+          <Key>
+            <PropertyRef Name="IdEmprendimientos" />
+          </Key>
+          <Property Name="IdEmprendimientos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreEmprendimiento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InversionRequerida" Type="int" Nullable="false" />
+          <Property Name="IngresosProyectados" Type="int" Nullable="false" />
+          <Property Name="InversionInfraestructura" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Emprendimientos4RI">
+          <Key>
+            <PropertyRef Name="IdEmprendimientos4RI" />
+          </Key>
+          <Property Name="IdEmprendimientos4RI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdHerramientas4RI" Type="int" Nullable="false" />
+          <Property Name="IdEmprendimientos" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Herramientas4RI">
+          <Key>
+            <PropertyRef Name="IdHerramientas4RI" />
+          </Key>
+          <Property Name="IdHerramientas4RI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreHerramientas4RI" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IdeasConjunto">
+          <Key>
+            <PropertyRef Name="idConjunto" />
+          </Key>
+          <Property Name="idConjunto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idIdea" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImpactoDepartamento">
+          <Key>
+            <PropertyRef Name="IdDepartamentosImpacto" />
+          </Key>
+          <Property Name="IdDepartamentosImpacto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDepartamento" Type="int" Nullable="false" />
+          <Property Name="IdImpacto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImpactoEmprendimiento">
+          <Key>
+            <PropertyRef Name="IdImpactoEmprendimiento" />
+          </Key>
+          <Property Name="IdImpactoEmprendimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdImpacto" Type="int" Nullable="false" />
+          <Property Name="IdEmprendimiento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Impactos">
+          <Key>
+            <PropertyRef Name="IdImpactos" />
+          </Key>
+          <Property Name="IdImpactos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreImpacto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ImpactoDepartamento" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_EmprendimientoEmpleado_empleado">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="EmprendimientoEmpleado" Type="Self.EmprendimientoEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="IdEmpleado" />
+            </Principal>
+            <Dependent Role="EmprendimientoEmpleado">
+              <PropertyRef Name="IdEpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdeasConjuntoTable_EmprendimientosTable">
+          <End Role="Emprendimientos" Type="Self.Emprendimientos" Multiplicity="1" />
+          <End Role="IdeasConjunto" Type="Self.IdeasConjunto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emprendimientos">
+              <PropertyRef Name="IdEmprendimientos" />
+            </Principal>
+            <Dependent Role="IdeasConjunto">
+              <PropertyRef Name="idIdea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdEmprendimientoEmpleado_EmprendimientosTable">
+          <End Role="Emprendimientos" Type="Self.Emprendimientos" Multiplicity="1" />
+          <End Role="EmprendimientoEmpleado" Type="Self.EmprendimientoEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emprendimientos">
+              <PropertyRef Name="IdEmprendimientos" />
+            </Principal>
+            <Dependent Role="EmprendimientoEmpleado">
+              <PropertyRef Name="IdEmprendimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdEmprendimientos4RI_EmprendimientosTable">
+          <End Role="Emprendimientos" Type="Self.Emprendimientos" Multiplicity="1" />
+          <End Role="Emprendimientos4RI" Type="Self.Emprendimientos4RI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emprendimientos">
+              <PropertyRef Name="IdEmprendimientos" />
+            </Principal>
+            <Dependent Role="Emprendimientos4RI">
+              <PropertyRef Name="IdEmprendimientos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdEmprendimientos4RI_Herramientas4RITable">
+          <End Role="Herramientas4RI" Type="Self.Herramientas4RI" Multiplicity="1" />
+          <End Role="Emprendimientos4RI" Type="Self.Emprendimientos4RI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Herramientas4RI">
+              <PropertyRef Name="IdHerramientas4RI" />
+            </Principal>
+            <Dependent Role="Emprendimientos4RI">
+              <PropertyRef Name="IdHerramientas4RI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImpactoDepartamento_DepartamentoTable">
+          <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+          <End Role="ImpactoDepartamento" Type="Self.ImpactoDepartamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="IdDepartamento" />
+            </Principal>
+            <Dependent Role="ImpactoDepartamento">
+              <PropertyRef Name="IdImpacto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImpactoDepartamento_ImpactosTable">
+          <End Role="Impactos" Type="Self.Impactos" Multiplicity="1" />
+          <End Role="ImpactoDepartamento" Type="Self.ImpactoDepartamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Impactos">
+              <PropertyRef Name="IdImpactos" />
+            </Principal>
+            <Dependent Role="ImpactoDepartamento">
+              <PropertyRef Name="IdDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImpactoEmprendimiento_Emprendimientos">
+          <End Role="Emprendimientos" Type="Self.Emprendimientos" Multiplicity="1" />
+          <End Role="ImpactoEmprendimiento" Type="Self.ImpactoEmprendimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emprendimientos">
+              <PropertyRef Name="IdEmprendimientos" />
+            </Principal>
+            <Dependent Role="ImpactoEmprendimiento">
+              <PropertyRef Name="IdEmprendimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImpactoEmprendimiento_Impactos">
+          <End Role="Impactos" Type="Self.Impactos" Multiplicity="1" />
+          <End Role="ImpactoEmprendimiento" Type="Self.ImpactoEmprendimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Impactos">
+              <PropertyRef Name="IdImpactos" />
+            </Principal>
+            <Dependent Role="ImpactoEmprendimiento">
+              <PropertyRef Name="IdImpacto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CodigoMVCModelStoreContainer">
+          <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empleado" EntityType="Self.empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmprendimientoEmpleado" EntityType="Self.EmprendimientoEmpleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emprendimientos" EntityType="Self.Emprendimientos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emprendimientos4RI" EntityType="Self.Emprendimientos4RI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Herramientas4RI" EntityType="Self.Herramientas4RI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdeasConjunto" EntityType="Self.IdeasConjunto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImpactoDepartamento" EntityType="Self.ImpactoDepartamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImpactoEmprendimiento" EntityType="Self.ImpactoEmprendimiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Impactos" EntityType="Self.Impactos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EmprendimientoEmpleado_empleado" Association="Self.FK_EmprendimientoEmpleado_empleado">
+            <End Role="empleado" EntitySet="empleado" />
+            <End Role="EmprendimientoEmpleado" EntitySet="EmprendimientoEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdeasConjuntoTable_EmprendimientosTable" Association="Self.FK_IdeasConjuntoTable_EmprendimientosTable">
+            <End Role="Emprendimientos" EntitySet="Emprendimientos" />
+            <End Role="IdeasConjunto" EntitySet="IdeasConjunto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdEmprendimientoEmpleado_EmprendimientosTable" Association="Self.FK_IdEmprendimientoEmpleado_EmprendimientosTable">
+            <End Role="Emprendimientos" EntitySet="Emprendimientos" />
+            <End Role="EmprendimientoEmpleado" EntitySet="EmprendimientoEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdEmprendimientos4RI_EmprendimientosTable" Association="Self.FK_IdEmprendimientos4RI_EmprendimientosTable">
+            <End Role="Emprendimientos" EntitySet="Emprendimientos" />
+            <End Role="Emprendimientos4RI" EntitySet="Emprendimientos4RI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdEmprendimientos4RI_Herramientas4RITable" Association="Self.FK_IdEmprendimientos4RI_Herramientas4RITable">
+            <End Role="Herramientas4RI" EntitySet="Herramientas4RI" />
+            <End Role="Emprendimientos4RI" EntitySet="Emprendimientos4RI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImpactoDepartamento_DepartamentoTable" Association="Self.FK_ImpactoDepartamento_DepartamentoTable">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="ImpactoDepartamento" EntitySet="ImpactoDepartamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImpactoDepartamento_ImpactosTable" Association="Self.FK_ImpactoDepartamento_ImpactosTable">
+            <End Role="Impactos" EntitySet="Impactos" />
+            <End Role="ImpactoDepartamento" EntitySet="ImpactoDepartamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImpactoEmprendimiento_Emprendimientos" Association="Self.FK_ImpactoEmprendimiento_Emprendimientos">
+            <End Role="Emprendimientos" EntitySet="Emprendimientos" />
+            <End Role="ImpactoEmprendimiento" EntitySet="ImpactoEmprendimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImpactoEmprendimiento_Impactos" Association="Self.FK_ImpactoEmprendimiento_Impactos">
+            <End Role="Impactos" EntitySet="Impactos" />
+            <End Role="ImpactoEmprendimiento" EntitySet="ImpactoEmprendimiento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CodigoMVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="IdDepartamento" />
+          </Key>
+          <Property Name="IdDepartamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreDepartamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ImpactoDepartamento" Relationship="Self.FK_ImpactoDepartamento_DepartamentoTable" FromRole="Departamento" ToRole="ImpactoDepartamento" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="IdEmpleado" />
+          </Key>
+          <Property Name="IdEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreEmpleado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApellidoEmpleado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CedulaEmpleado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CorreoEmpleado" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="EmprendimientoEmpleado" Relationship="Self.FK_EmprendimientoEmpleado_empleado" FromRole="empleado" ToRole="EmprendimientoEmpleado" />
+        </EntityType>
+        <EntityType Name="EmprendimientoEmpleado">
+          <Key>
+            <PropertyRef Name="IdEmprendimientoEmpleado" />
+          </Key>
+          <Property Name="IdEmprendimientoEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmprendimiento" Type="Int32" Nullable="false" />
+          <Property Name="IdEpleado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="empleado" Relationship="Self.FK_EmprendimientoEmpleado_empleado" FromRole="EmprendimientoEmpleado" ToRole="empleado" />
+          <NavigationProperty Name="Emprendimientos" Relationship="Self.FK_IdEmprendimientoEmpleado_EmprendimientosTable" FromRole="EmprendimientoEmpleado" ToRole="Emprendimientos" />
+        </EntityType>
+        <EntityType Name="Emprendimientos">
+          <Key>
+            <PropertyRef Name="IdEmprendimientos" />
+          </Key>
+          <Property Name="IdEmprendimientos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreEmprendimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InversionRequerida" Type="Int32" Nullable="false" />
+          <Property Name="IngresosProyectados" Type="Int32" Nullable="false" />
+          <Property Name="InversionInfraestructura" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EmprendimientoEmpleado" Relationship="Self.FK_IdEmprendimientoEmpleado_EmprendimientosTable" FromRole="Emprendimientos" ToRole="EmprendimientoEmpleado" />
+          <NavigationProperty Name="IdeasConjunto" Relationship="Self.FK_IdeasConjuntoTable_EmprendimientosTable" FromRole="Emprendimientos" ToRole="IdeasConjunto" />
+          <NavigationProperty Name="Emprendimientos4RI" Relationship="Self.FK_IdEmprendimientos4RI_EmprendimientosTable" FromRole="Emprendimientos" ToRole="Emprendimientos4RI" />
+          <NavigationProperty Name="ImpactoEmprendimiento" Relationship="Self.FK_ImpactoEmprendimiento_Emprendimientos" FromRole="Emprendimientos" ToRole="ImpactoEmprendimiento" />
+        </EntityType>
+        <EntityType Name="Emprendimientos4RI">
+          <Key>
+            <PropertyRef Name="IdEmprendimientos4RI" />
+          </Key>
+          <Property Name="IdEmprendimientos4RI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdHerramientas4RI" Type="Int32" Nullable="false" />
+          <Property Name="IdEmprendimientos" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Emprendimientos" Relationship="Self.FK_IdEmprendimientos4RI_EmprendimientosTable" FromRole="Emprendimientos4RI" ToRole="Emprendimientos" />
+          <NavigationProperty Name="Herramientas4RI" Relationship="Self.FK_IdEmprendimientos4RI_Herramientas4RITable" FromRole="Emprendimientos4RI" ToRole="Herramientas4RI" />
+        </EntityType>
+        <EntityType Name="Herramientas4RI">
+          <Key>
+            <PropertyRef Name="IdHerramientas4RI" />
+          </Key>
+          <Property Name="IdHerramientas4RI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreHerramientas4RI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Emprendimientos4RI" Relationship="Self.FK_IdEmprendimientos4RI_Herramientas4RITable" FromRole="Herramientas4RI" ToRole="Emprendimientos4RI" />
+        </EntityType>
+        <EntityType Name="IdeasConjunto">
+          <Key>
+            <PropertyRef Name="idConjunto" />
+          </Key>
+          <Property Name="idConjunto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idIdea" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Emprendimientos" Relationship="Self.FK_IdeasConjuntoTable_EmprendimientosTable" FromRole="IdeasConjunto" ToRole="Emprendimientos" />
+        </EntityType>
+        <EntityType Name="ImpactoDepartamento">
+          <Key>
+            <PropertyRef Name="IdDepartamentosImpacto" />
+          </Key>
+          <Property Name="IdDepartamentosImpacto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDepartamento" Type="Int32" Nullable="false" />
+          <Property Name="IdImpacto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Departamento" Relationship="Self.FK_ImpactoDepartamento_DepartamentoTable" FromRole="ImpactoDepartamento" ToRole="Departamento" />
+          <NavigationProperty Name="Impactos" Relationship="Self.FK_ImpactoDepartamento_ImpactosTable" FromRole="ImpactoDepartamento" ToRole="Impactos" />
+        </EntityType>
+        <EntityType Name="ImpactoEmprendimiento">
+          <Key>
+            <PropertyRef Name="IdImpactoEmprendimiento" />
+          </Key>
+          <Property Name="IdImpactoEmprendimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdImpacto" Type="Int32" Nullable="false" />
+          <Property Name="IdEmprendimiento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Emprendimientos" Relationship="Self.FK_ImpactoEmprendimiento_Emprendimientos" FromRole="ImpactoEmprendimiento" ToRole="Emprendimientos" />
+          <NavigationProperty Name="Impactos" Relationship="Self.FK_ImpactoEmprendimiento_Impactos" FromRole="ImpactoEmprendimiento" ToRole="Impactos" />
+        </EntityType>
+        <EntityType Name="Impactos">
+          <Key>
+            <PropertyRef Name="IdImpactos" />
+          </Key>
+          <Property Name="IdImpactos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreImpacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImpactoDepartamento" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ImpactoDepartamento1" Relationship="Self.FK_ImpactoDepartamento_ImpactosTable" FromRole="Impactos" ToRole="ImpactoDepartamento" />
+          <NavigationProperty Name="ImpactoEmprendimiento" Relationship="Self.FK_ImpactoEmprendimiento_Impactos" FromRole="Impactos" ToRole="ImpactoEmprendimiento" />
+        </EntityType>
+        <Association Name="FK_ImpactoDepartamento_DepartamentoTable">
+          <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+          <End Role="ImpactoDepartamento" Type="Self.ImpactoDepartamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="IdDepartamento" />
+            </Principal>
+            <Dependent Role="ImpactoDepartamento">
+              <PropertyRef Name="IdImpacto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmprendimientoEmpleado_empleado">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="EmprendimientoEmpleado" Type="Self.EmprendimientoEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="IdEmpleado" />
+            </Principal>
+            <Dependent Role="EmprendimientoEmpleado">
+              <PropertyRef Name="IdEpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdEmprendimientoEmpleado_EmprendimientosTable">
+          <End Role="Emprendimientos" Type="Self.Emprendimientos" Multiplicity="1" />
+          <End Role="EmprendimientoEmpleado" Type="Self.EmprendimientoEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emprendimientos">
+              <PropertyRef Name="IdEmprendimientos" />
+            </Principal>
+            <Dependent Role="EmprendimientoEmpleado">
+              <PropertyRef Name="IdEmprendimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdeasConjuntoTable_EmprendimientosTable">
+          <End Role="Emprendimientos" Type="Self.Emprendimientos" Multiplicity="1" />
+          <End Role="IdeasConjunto" Type="Self.IdeasConjunto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emprendimientos">
+              <PropertyRef Name="IdEmprendimientos" />
+            </Principal>
+            <Dependent Role="IdeasConjunto">
+              <PropertyRef Name="idIdea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdEmprendimientos4RI_EmprendimientosTable">
+          <End Role="Emprendimientos" Type="Self.Emprendimientos" Multiplicity="1" />
+          <End Role="Emprendimientos4RI" Type="Self.Emprendimientos4RI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emprendimientos">
+              <PropertyRef Name="IdEmprendimientos" />
+            </Principal>
+            <Dependent Role="Emprendimientos4RI">
+              <PropertyRef Name="IdEmprendimientos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImpactoEmprendimiento_Emprendimientos">
+          <End Role="Emprendimientos" Type="Self.Emprendimientos" Multiplicity="1" />
+          <End Role="ImpactoEmprendimiento" Type="Self.ImpactoEmprendimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emprendimientos">
+              <PropertyRef Name="IdEmprendimientos" />
+            </Principal>
+            <Dependent Role="ImpactoEmprendimiento">
+              <PropertyRef Name="IdEmprendimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdEmprendimientos4RI_Herramientas4RITable">
+          <End Role="Herramientas4RI" Type="Self.Herramientas4RI" Multiplicity="1" />
+          <End Role="Emprendimientos4RI" Type="Self.Emprendimientos4RI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Herramientas4RI">
+              <PropertyRef Name="IdHerramientas4RI" />
+            </Principal>
+            <Dependent Role="Emprendimientos4RI">
+              <PropertyRef Name="IdHerramientas4RI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImpactoDepartamento_ImpactosTable">
+          <End Role="Impactos" Type="Self.Impactos" Multiplicity="1" />
+          <End Role="ImpactoDepartamento" Type="Self.ImpactoDepartamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Impactos">
+              <PropertyRef Name="IdImpactos" />
+            </Principal>
+            <Dependent Role="ImpactoDepartamento">
+              <PropertyRef Name="IdDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImpactoEmprendimiento_Impactos">
+          <End Role="Impactos" Type="Self.Impactos" Multiplicity="1" />
+          <End Role="ImpactoEmprendimiento" Type="Self.ImpactoEmprendimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Impactos">
+              <PropertyRef Name="IdImpactos" />
+            </Principal>
+            <Dependent Role="ImpactoEmprendimiento">
+              <PropertyRef Name="IdImpacto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CodigoMVCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Departamento" EntityType="Self.Departamento" />
+          <EntitySet Name="empleado" EntityType="Self.empleado" />
+          <EntitySet Name="EmprendimientoEmpleado" EntityType="Self.EmprendimientoEmpleado" />
+          <EntitySet Name="Emprendimientos" EntityType="Self.Emprendimientos" />
+          <EntitySet Name="Emprendimientos4RI" EntityType="Self.Emprendimientos4RI" />
+          <EntitySet Name="Herramientas4RI" EntityType="Self.Herramientas4RI" />
+          <EntitySet Name="IdeasConjunto" EntityType="Self.IdeasConjunto" />
+          <EntitySet Name="ImpactoDepartamento" EntityType="Self.ImpactoDepartamento" />
+          <EntitySet Name="ImpactoEmprendimiento" EntityType="Self.ImpactoEmprendimiento" />
+          <EntitySet Name="Impactos" EntityType="Self.Impactos" />
+          <AssociationSet Name="FK_ImpactoDepartamento_DepartamentoTable" Association="Self.FK_ImpactoDepartamento_DepartamentoTable">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="ImpactoDepartamento" EntitySet="ImpactoDepartamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmprendimientoEmpleado_empleado" Association="Self.FK_EmprendimientoEmpleado_empleado">
+            <End Role="empleado" EntitySet="empleado" />
+            <End Role="EmprendimientoEmpleado" EntitySet="EmprendimientoEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdEmprendimientoEmpleado_EmprendimientosTable" Association="Self.FK_IdEmprendimientoEmpleado_EmprendimientosTable">
+            <End Role="Emprendimientos" EntitySet="Emprendimientos" />
+            <End Role="EmprendimientoEmpleado" EntitySet="EmprendimientoEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdeasConjuntoTable_EmprendimientosTable" Association="Self.FK_IdeasConjuntoTable_EmprendimientosTable">
+            <End Role="Emprendimientos" EntitySet="Emprendimientos" />
+            <End Role="IdeasConjunto" EntitySet="IdeasConjunto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdEmprendimientos4RI_EmprendimientosTable" Association="Self.FK_IdEmprendimientos4RI_EmprendimientosTable">
+            <End Role="Emprendimientos" EntitySet="Emprendimientos" />
+            <End Role="Emprendimientos4RI" EntitySet="Emprendimientos4RI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImpactoEmprendimiento_Emprendimientos" Association="Self.FK_ImpactoEmprendimiento_Emprendimientos">
+            <End Role="Emprendimientos" EntitySet="Emprendimientos" />
+            <End Role="ImpactoEmprendimiento" EntitySet="ImpactoEmprendimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdEmprendimientos4RI_Herramientas4RITable" Association="Self.FK_IdEmprendimientos4RI_Herramientas4RITable">
+            <End Role="Herramientas4RI" EntitySet="Herramientas4RI" />
+            <End Role="Emprendimientos4RI" EntitySet="Emprendimientos4RI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImpactoDepartamento_ImpactosTable" Association="Self.FK_ImpactoDepartamento_ImpactosTable">
+            <End Role="Impactos" EntitySet="Impactos" />
+            <End Role="ImpactoDepartamento" EntitySet="ImpactoDepartamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImpactoEmprendimiento_Impactos" Association="Self.FK_ImpactoEmprendimiento_Impactos">
+            <End Role="Impactos" EntitySet="Impactos" />
+            <End Role="ImpactoEmprendimiento" EntitySet="ImpactoEmprendimiento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CodigoMVCModelStoreContainer" CdmEntityContainer="CodigoMVCEntities">
+          <EntitySetMapping Name="Departamento">
+            <EntityTypeMapping TypeName="CodigoMVCModel.Departamento">
+              <MappingFragment StoreEntitySet="Departamento">
+                <ScalarProperty Name="IdDepartamento" ColumnName="IdDepartamento" />
+                <ScalarProperty Name="NombreDepartamento" ColumnName="NombreDepartamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empleado">
+            <EntityTypeMapping TypeName="CodigoMVCModel.empleado">
+              <MappingFragment StoreEntitySet="empleado">
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="ApellidoEmpleado" ColumnName="ApellidoEmpleado" />
+                <ScalarProperty Name="CedulaEmpleado" ColumnName="CedulaEmpleado" />
+                <ScalarProperty Name="CorreoEmpleado" ColumnName="CorreoEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmprendimientoEmpleado">
+            <EntityTypeMapping TypeName="CodigoMVCModel.EmprendimientoEmpleado">
+              <MappingFragment StoreEntitySet="EmprendimientoEmpleado">
+                <ScalarProperty Name="IdEmprendimientoEmpleado" ColumnName="IdEmprendimientoEmpleado" />
+                <ScalarProperty Name="IdEmprendimiento" ColumnName="IdEmprendimiento" />
+                <ScalarProperty Name="IdEpleado" ColumnName="IdEpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emprendimientos">
+            <EntityTypeMapping TypeName="CodigoMVCModel.Emprendimientos">
+              <MappingFragment StoreEntitySet="Emprendimientos">
+                <ScalarProperty Name="IdEmprendimientos" ColumnName="IdEmprendimientos" />
+                <ScalarProperty Name="NombreEmprendimiento" ColumnName="NombreEmprendimiento" />
+                <ScalarProperty Name="InversionRequerida" ColumnName="InversionRequerida" />
+                <ScalarProperty Name="IngresosProyectados" ColumnName="IngresosProyectados" />
+                <ScalarProperty Name="InversionInfraestructura" ColumnName="InversionInfraestructura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emprendimientos4RI">
+            <EntityTypeMapping TypeName="CodigoMVCModel.Emprendimientos4RI">
+              <MappingFragment StoreEntitySet="Emprendimientos4RI">
+                <ScalarProperty Name="IdEmprendimientos4RI" ColumnName="IdEmprendimientos4RI" />
+                <ScalarProperty Name="IdHerramientas4RI" ColumnName="IdHerramientas4RI" />
+                <ScalarProperty Name="IdEmprendimientos" ColumnName="IdEmprendimientos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Herramientas4RI">
+            <EntityTypeMapping TypeName="CodigoMVCModel.Herramientas4RI">
+              <MappingFragment StoreEntitySet="Herramientas4RI">
+                <ScalarProperty Name="IdHerramientas4RI" ColumnName="IdHerramientas4RI" />
+                <ScalarProperty Name="NombreHerramientas4RI" ColumnName="NombreHerramientas4RI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdeasConjunto">
+            <EntityTypeMapping TypeName="CodigoMVCModel.IdeasConjunto">
+              <MappingFragment StoreEntitySet="IdeasConjunto">
+                <ScalarProperty Name="idConjunto" ColumnName="idConjunto" />
+                <ScalarProperty Name="idIdea" ColumnName="idIdea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImpactoDepartamento">
+            <EntityTypeMapping TypeName="CodigoMVCModel.ImpactoDepartamento">
+              <MappingFragment StoreEntitySet="ImpactoDepartamento">
+                <ScalarProperty Name="IdDepartamentosImpacto" ColumnName="IdDepartamentosImpacto" />
+                <ScalarProperty Name="IdDepartamento" ColumnName="IdDepartamento" />
+                <ScalarProperty Name="IdImpacto" ColumnName="IdImpacto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImpactoEmprendimiento">
+            <EntityTypeMapping TypeName="CodigoMVCModel.ImpactoEmprendimiento">
+              <MappingFragment StoreEntitySet="ImpactoEmprendimiento">
+                <ScalarProperty Name="IdImpactoEmprendimiento" ColumnName="IdImpactoEmprendimiento" />
+                <ScalarProperty Name="IdImpacto" ColumnName="IdImpacto" />
+                <ScalarProperty Name="IdEmprendimiento" ColumnName="IdEmprendimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Impactos">
+            <EntityTypeMapping TypeName="CodigoMVCModel.Impactos">
+              <MappingFragment StoreEntitySet="Impactos">
+                <ScalarProperty Name="IdImpactos" ColumnName="IdImpactos" />
+                <ScalarProperty Name="NombreImpacto" ColumnName="NombreImpacto" />
+                <ScalarProperty Name="ImpactoDepartamento" ColumnName="ImpactoDepartamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

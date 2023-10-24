@@ -1,0 +1,50 @@
+﻿@model CodigoLimpio.Models.empleado
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>empleado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreEmpleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreEmpleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApellidoEmpleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApellidoEmpleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CedulaEmpleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CedulaEmpleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorreoEmpleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorreoEmpleado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdEmpleado }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

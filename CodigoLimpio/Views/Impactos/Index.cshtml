@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CodigoLimpio.Models.Impactos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreImpacto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImpactoDepartamento)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreImpacto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImpactoDepartamento)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdImpactos }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdImpactos }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdImpactos })
+        </td>
+    </tr>
+}
+
+</table>

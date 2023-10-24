@@ -1,0 +1,50 @@
+﻿@model CodigoLimpio.Models.Emprendimientos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Emprendimientos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreEmprendimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreEmprendimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InversionRequerida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InversionRequerida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IngresosProyectados)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IngresosProyectados)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InversionInfraestructura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InversionInfraestructura)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdEmprendimientos }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
