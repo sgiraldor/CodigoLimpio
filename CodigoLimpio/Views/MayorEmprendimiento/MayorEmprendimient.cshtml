@@ -1,0 +1,26 @@
+﻿@model CodigoLimpio.Models.Emprendimientos
+
+@{
+    ViewBag.Title = "Emprendimiento con Mayores Ingresos";
+}
+
+<h2>Emprendimiento con Mayores Ingresos</h2>
+
+@if (Model != null)
+{
+    <dl>
+        <dt>Nombre del Emprendimiento:</dt>
+        <dd>@Model.NombreEmprendimiento</dd>
+
+        <dt>Ingresos Proyectados:</dt>
+        <dd>@Model.IngresosProyectados</dd>
+    </dl>
+}
+else
+{
+    <p>No se encontraron emprendimientos con ingresos proyectados.</p>
+}
+
+@Html.ActionLink("Volver a la Lista", "Index")
+
+

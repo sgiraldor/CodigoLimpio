@@ -17,8 +17,20 @@ namespace CodigoLimpio.Controllers
         // GET: Impactos
         public ActionResult Index()
         {
+            
             return View(db.Impactos.ToList());
         }
+
+
+        public ActionResult DesarrolloSostenible()
+        {
+
+            int conteo = db.Impactos.Count(h => h.NombreImpacto.Contains("desarrollo sostenible"));
+            return View(conteo);
+        }
+
+
+
 
         // GET: Impactos/Details/5
         public ActionResult Details(int? id)

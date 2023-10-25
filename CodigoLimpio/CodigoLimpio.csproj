@@ -56,6 +56,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -64,6 +67,12 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.9\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -246,38 +255,47 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Emprendimientos\Create.cshtml" />
-    <Content Include="Views\Emprendimientos\Delete.cshtml" />
-    <Content Include="Views\Emprendimientos\Details.cshtml" />
-    <Content Include="Views\Emprendimientos\Edit.cshtml" />
-    <Content Include="Views\Emprendimientos\Index.cshtml" />
     <Content Include="Views\empleadoes\Create.cshtml" />
     <Content Include="Views\empleadoes\Delete.cshtml" />
     <Content Include="Views\empleadoes\Details.cshtml" />
     <Content Include="Views\empleadoes\Edit.cshtml" />
     <Content Include="Views\empleadoes\Index.cshtml" />
-    <Content Include="Views\Impactos\Create.cshtml" />
-    <Content Include="Views\Impactos\Delete.cshtml" />
-    <Content Include="Views\Impactos\Details.cshtml" />
-    <Content Include="Views\Impactos\Edit.cshtml" />
-    <Content Include="Views\Impactos\Index.cshtml" />
-    <Content Include="Views\Herramientas4RI\Create.cshtml" />
-    <Content Include="Views\Herramientas4RI\Delete.cshtml" />
-    <Content Include="Views\Herramientas4RI\Details.cshtml" />
-    <Content Include="Views\Herramientas4RI\Edit.cshtml" />
-    <Content Include="Views\Herramientas4RI\Index.cshtml" />
+    <Content Include="Views\Emprendimientos\Create.cshtml" />
+    <Content Include="Views\Emprendimientos\Delete.cshtml" />
+    <Content Include="Views\Emprendimientos\Details.cshtml" />
+    <Content Include="Views\Emprendimientos\Edit.cshtml" />
+    <Content Include="Views\Emprendimientos\Index.cshtml" />
     <Content Include="Views\Emprendimientos4RI\Create.cshtml" />
     <Content Include="Views\Emprendimientos4RI\Delete.cshtml" />
     <Content Include="Views\Emprendimientos4RI\Details.cshtml" />
     <Content Include="Views\Emprendimientos4RI\Edit.cshtml" />
     <Content Include="Views\Emprendimientos4RI\Index.cshtml" />
+    <Content Include="Views\Herramientas4RI\Create.cshtml" />
+    <Content Include="Views\Herramientas4RI\Delete.cshtml" />
+    <Content Include="Views\Herramientas4RI\Details.cshtml" />
+    <Content Include="Views\Herramientas4RI\Edit.cshtml" />
+    <Content Include="Views\Herramientas4RI\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Impactos\Create.cshtml" />
+    <Content Include="Views\Impactos\Delete.cshtml" />
+    <Content Include="Views\Impactos\Details.cshtml" />
+    <Content Include="Views\Impactos\Edit.cshtml" />
+    <Content Include="Views\Impactos\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Departamentoes\Create.cshtml" />
+    <Content Include="Views\Departamentoes\Delete.cshtml" />
+    <Content Include="Views\Departamentoes\Details.cshtml" />
+    <Content Include="Views\Departamentoes\Edit.cshtml" />
+    <Content Include="Views\Departamentoes\Index.cshtml" />
+    <Content Include="Views\MayorEmprendimiento\MayorEmprendimient.cshtml" />
+    <Content Include="Views\Emprendimientos\MayorEmprendimiento.cshtml" />
+    <Content Include="Views\Herramientas4RI\EmprendimientosIA.cshtml" />
+    <Content Include="Views\Impactos\DesarrolloSostenible.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

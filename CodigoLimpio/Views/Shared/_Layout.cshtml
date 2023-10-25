@@ -18,14 +18,21 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+                    <li>@Html.ActionLink("Empleados", "index", "empleadoes", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Emprendimientos", "index", "Emprendimientos", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Emprendimietnos 4RI", "index", "Emprendimientos4RI", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Impactos departamentales", "index", "Impactos", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Herramientas 4RI", "index", "Herramientas4RI", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Informacion de empresas", "MayorEmprendimiento", "Emprendimientos", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("IA", "EmprendimientosIA", "Herramientas4RI", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("impacto que contiene desarrollo sostenible ", "DesarrolloSostenible", "Impactos", new { area = "" }, new { @class = "nav-link" })</li>
+
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container body-content">
+    <div class="container body-content">     
         @RenderBody()
         <hr />
         <footer>

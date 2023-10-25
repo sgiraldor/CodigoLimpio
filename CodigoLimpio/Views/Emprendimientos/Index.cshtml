@@ -41,9 +41,11 @@
             @Html.DisplayFor(modelItem => item.InversionInfraestructura)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdEmprendimientos }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdEmprendimientos }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdEmprendimientos })
+            @Html.ActionLink("Edit", "Edit", new { id = item.IdEmprendimientos }) |
+            @Html.ActionLink("Details", "Details", new { id = item.IdEmprendimientos }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IdEmprendimientos })
+            @Html.ActionLink("Ver Emprendimiento con Mayores Ingresos", "MayorEmprendimiento","Emprendimientos")
+
         </td>
     </tr>
 }

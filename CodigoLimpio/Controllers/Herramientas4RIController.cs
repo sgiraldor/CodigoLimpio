@@ -20,6 +20,15 @@ namespace CodigoLimpio.Controllers
             return View(db.Herramientas4RI.ToList());
         }
 
+
+        public ActionResult EmprendimientosIA()
+        {
+            int conteo = db.Herramientas4RI.Count(h => h.NombreHerramientas4RI.Contains("IA"));
+            return View(conteo);
+            
+        }
+
+
         // GET: Herramientas4RI/Details/5
         public ActionResult Details(int? id)
         {
@@ -123,5 +132,7 @@ namespace CodigoLimpio.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }

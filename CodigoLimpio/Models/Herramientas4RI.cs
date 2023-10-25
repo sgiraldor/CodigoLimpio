@@ -22,7 +22,8 @@ namespace CodigoLimpio.Models
     
         public int IdHerramientas4RI { get; set; }
         public string NombreHerramientas4RI { get; set; }
-    
+        public string OpcionesListaDesplegable { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emprendimientos4RI> Emprendimientos4RI { get; set; }
     }

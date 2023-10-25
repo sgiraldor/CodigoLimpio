@@ -132,5 +132,17 @@ namespace CodigoLimpio.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult TopEmprendimiento()
+        {
+            // Consulta para encontrar el emprendimiento con los mayores ingresos en los primeros tres años.
+            var topEmprendimiento = db.Emprendimientos
+                .OrderByDescending(e => e.IngresosProyectados)
+                .Where(e => e.IngresosProyectados != null)
+                .Take(1)
+                .FirstOrDefault();
+
+            return View(topEmprendimiento);
+        }
     }
 }

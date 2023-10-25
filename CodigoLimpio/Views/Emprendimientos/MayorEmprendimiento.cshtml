@@ -1,0 +1,91 @@
+﻿@model List<CodigoLimpio.Models.Emprendimientos>
+
+@{
+    ViewBag.Title = "Emprendimiento con Mayores Ingresos en los Primeros 3 Años";
+}
+
+<h2>Emprendimiento con Mayores Ingresos en los Primeros 3 Años</h2>
+
+@{
+    var emprendimientoMaxIngresos = Model.OrderByDescending(e => e.IngresosProyectados).Take(1).FirstOrDefault();
+    var sumaEmprendimientos = Model.Sum(e => e.IngresosProyectados);
+    var sumaInversionRequerida = Model.Sum(e => e.InversionRequerida);
+    var sumaInversionInfraestructura = Model.Sum(e => e.InversionInfraestructura);
+    var promIngresosProyectados = Model.Average(e => e.IngresosProyectados);
+    var IngresosProyectados_mayorAlPromedio = Model.Where(e => e.IngresosProyectados > promIngresosProyectados);
+
+}
+
+@if (emprendimientoMaxIngresos != null)
+{
+    <table class="table">
+        <tr>
+            <th>Nombre del Emprendimiento</th>
+            <th>Ingresos Proyectados en los Primeros 3 Años</th>
+        </tr>
+        <tr>
+            <td>@emprendimientoMaxIngresos.NombreEmprendimiento</td>
+            <td>@emprendimientoMaxIngresos.IngresosProyectados</td>
+        </tr>
+
+        <tr>
+            <th>suma de todos los ingresos proyectados</th>
+
+
+        </tr>
+
+        <tr>
+            <td>@sumaEmprendimientos</td>
+
+
+        </tr>
+
+        <tr>
+            <th>suma total de inversión</th>
+
+        </tr>
+
+        <tr>
+            <td>@sumaInversionRequerida</td>
+
+
+        </tr>
+
+        <tr>
+            <th>suma inversion infrastructura</th>
+
+        </tr>
+
+        <tr>
+            <td>@sumaInversionInfraestructura</td>
+
+
+        </tr>
+
+        <tr>
+            <th>nombre empresa mayor al promedio del dato ingresos proyectados </th>
+            <th> cantidad </th>
+
+        </tr>
+
+
+        @foreach (var item in IngresosProyectados_mayorAlPromedio) 
+        {
+            <tr>
+
+                <td>@Html.DisplayFor(IngresosProyectados_mayorAlPromedioItem => item.NombreEmprendimiento)</td>
+                <td>@Html.DisplayFor(IngresosProyectados_mayorAlPromedioItem => item.IngresosProyectados)</td>
+
+            </tr>
+        
+        }
+
+
+        </table>
+}
+else
+{
+    <p>No se encontraron emprendimientos.</p>
+}
+
+@Html.ActionLink("Volver a la lista", "Index")
